@@ -3,9 +3,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8"/>
- <link href="../static/RehberStyle.css" th:href="@{/RehberStyle.css}" rel="stylesheet" />
+ 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link href="../static/rehberStyle.css" th:href="@{/rehberStyle.css}" rel="stylesheet" />
 <title>Product Manager</title>
 </head>
 <body >
@@ -14,7 +15,7 @@
 	    </header>
 	    <div class="search-box">
     		<form action="display" method="post" class="form" onsubmit="">
-		        <input class="search-txt" id="barName" name="searchBarName" placeholder="Name" formaction = "">
+		        <input class="search-txt" id="barName" name="searchBarName" placeholder="Name" >
 		        <a href="#" class="search-btn" style="text-decoration: none;">
 		            <i class="fas fa-search"></i>
 		        </a>
