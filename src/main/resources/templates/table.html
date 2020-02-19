@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+ <link href="../static/RehberStyle.css" th:href="@{/RehberStyle.css}" rel="stylesheet" />
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<title>Product Manager</title>
+</head>
+<body >
+	    <header >
+	        <h1 >Rehber</h1>
+	    </header>
+	    <div class="search-box">
+    		<form action="display" method="post" class="form" onsubmit="">
+		        <input class="search-txt" id="barName" name="searchBarName" placeholder="Name" formaction = "">
+		        <a href="#" class="search-btn" style="text-decoration: none;">
+		            <i class="fas fa-search"></i>
+		        </a>
+	        </form>
+	    </div>
+	    	<form action="addTransfer">
+	    		<button type="submit" class="btn2" style="text-decoration: none;">Add New Data</button>
+	    	</form>
+		    
+		    <form action="logout" method="post">
+		   		<button  class="btn3" type="submit" >Logout</button>
+	    	</form>
+    	 <div class="divv">
+			<form action="update" method="post" >
+					<label class ="labels">Name</label>
+					<input  type="text" class="textBox" name="textName" id="textName" th:value="${session.boxName}" >
+					<label class ="labels">Email</label>
+					<input  type="text" class="textBox" name="textEmail" id = "textEmail" th:value="${session.boxEmail}" >
+					<button type="submit"  class="btn4" >Update</button>
+			</form>	
+        </div> 
+  
+	        <table id="rehber" align="center"> 
+		        <thead>
+		            <tr bgcolor="#333">
+		                <th  style="width: 0%;"><font color="#fff">ID</font></th>
+		                <th  style="width: 0%;"><font color="#fff">NAME</font></th>
+		                <th  style="width: 0%;"><font color="#fff">EMAIL</font></th>
+		                <th  style="width: 100%;"><font color="#fff">ACTION</font></th>    
+		            </tr>
+		        </thead>
+		        <TBody>
+
+					<tr th:each="list : ${listUser}" >
+						<td th:text="${list.id}"></td>
+						<td th:text="${list.name}"></td>
+						<td th:text="${list.email}"></td>
+						<td>
+							 <form th:action="@{/fill}"  method="post" >
+    							<input type="hidden" th:value="${list.id}" name ="hiddenId"/>
+   								<button type="submit" style="text-decoration: none; background:#333;" class="edit">Edit</button>
+							</form>
+							<form th:action="@{/delete}"  method="post" >
+    							<input type="hidden" th:value="${list.id}" name ="hiddenId" />
+   								<button type="submit" style="text-decoration: none; background: rgb(163, 2, 2);" class="edit">Delete</button>
+							</form>
+							
+						</td>
+					</tr>
+		        </TBody>
+	    	</table>
+   	 	<!-- </form>  -->	
+   	 	<script th:inline="javascript">
+   	 		/*<![CDATA[*/
+	 		$( document ).ready(function() {
+				var nameArray = new Array();
+	 			var nameArray = /*[[${session.listName}]]*/;
+				$( function() {
+				   
+				    $( "#barName" ).autocomplete({
+				      source: nameArray,
+				      messages: {
+				          noResults: '',
+				          results: function(amount) {
+				              return  ''
+				          }
+				      } 
+				    });
+				  } );
+	 		});		
+	 		/*]]>*/
+ 		</script>
+	</body>
+</html>
